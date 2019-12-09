@@ -1,0 +1,94 @@
+contentSchema:
+  type: string # HERO_BANNER
+  humanName: string | null # default(this.type)
+  
+  nodes:
+    node:
+      type: TEXT
+      subtype: HEADLINE
+      humanName: headline
+      validators:
+        clientside: [{type: NOT_NULL}, {type: MIN_LENGTH, args: {value: 10}}]
+              
+    node:
+      type: FUNCTIONAL
+      subType: RANDOM_HERO_BANNER_IMAGES
+      nodes:
+        node:
+          type: FILE
+          subtype: IMAGE
+          validation: [{type: IS_IMAGE}]
+          allowMutliple: true
+          nodes:
+            node:
+              type: TEXT
+              subtype: IMAGE_TEXT
+            node:
+              type: TEXT
+              subtype: TEXT_COLOR
+    
+    node:
+      type: FUNCTIONAL
+      subtype: PHRASE_OF_THE_DAY
+      storeReturnValue: true
+      nodes: 
+        node:
+          type: TEXT
+          subtype: DEFAULT_VALUE
+          data: {value: "hello"}
+
+    node:
+      type: FUNCTIONAL
+      subtype: DYNAMIC_PHRASE_OF_THE_DAY
+    node:
+      type: RICH_TEXT
+      nodes:
+        node: 
+          TYPE: PARAGRAPH
+          nodes:
+            node:
+              subType: TEXT
+              data: {value: "foo"}
+            node:
+              type: LINK
+              nodes:
+                type: TEXT
+                data: {value: "click me"}
+            node: 
+              TYPE: TEXT
+              data: {value: "bar"}
+    node:
+      type: FUNCTIONAL
+      subtype: PROMOTED_ARTICLES
+      storeReturnValue: true        
+
+
+CMS.connectors.functionalNodes.register('PROMOTED_ARTICLES', {
+  admin: {mount: ()=>{mount: , getReturnValue: {value: {}, errors: []}},
+  validateReturnValue: 
+})
+              
+
+type
+subtype
+additionalidentifier
+path
+fileName
+driver
+size
+id
+public
+tags
+
+
+        
+
+
+
+
+        
+
+      
+
+
+      

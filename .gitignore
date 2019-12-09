@@ -1,0 +1,12 @@
+.vscode
+.idea
+/mongo_data
+frontend/node_modules
+backend/node_modules
+/backend/.yo-rc.json
+/backend/yarn.lock
+/backend/public/assets
+/backend/dist
+/backend/webpack_stats.json
+/backend/public/assets/js
+/backend/public/assets/css

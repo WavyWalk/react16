@@ -1,0 +1,36 @@
+version: '3'
+services:
+  react16-app:
+    image: 'node:12.12.0-alpine'
+    container_name: 'react16-app'
+    depends_on:
+      - 'react16-mongo'
+    networks:
+      - server
+    build: .
+    ports:
+      - '3000:3000'
+      - '9229:9229'
+    volumes:
+      - '.:/usr/app'
+    working_dir: '/usr/app/backend'
+    command: npm run start
+  
+  react16-mongo:
+    image: 'mongo:3.4-xenial'
+    container_name: 'react16-mongo'
+    volumes:
+      - './mongo_data:/data/db'
+    networks:
+      - server
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+      MONGO_INITDB_DATABASE: 'react16'
+      MONGO_NON_ROOT_USERNAME: 'nonroot'
+      MONGO_NON_ROOT_PASSWORD: 'nonroot'
+    ports: 
+      - '27017:27017'
+
+networks:
+  server:
